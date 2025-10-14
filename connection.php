@@ -15,7 +15,7 @@
     <input type="text" id="t3" name="t3" placeholder="Age">
     <label>Gender</label>
     <input type="text" id="t4" name="t4" placeholder="Gender">
-    <button id="Check">Search</button>
+    <button type="submit" name="submit" value="insert Record">Search</button>
     </form>
 
     <?php
@@ -24,24 +24,36 @@
     $password = "";
     $dbname = "test-up";
 
-    if($_SESSION)
-    {
-        $uname = $_POST['t1'];
-        $fname = $_POST['t2'];
-        $age = $_POST['t3'];
-        $gender = $_POST['t4'];
-    }
+    //if($_POST)
+    //{
+        // $ID = $_POST['t1'];
+        // $fname = $_POST['t2'];
+        // $age = $_POST['t3'];
+        // $gender = $_POST['t4'];
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    $sql = "INSERT INTO test-up (uname, fname, age, gender) VALUES ('$uname', '$fname', '$age', '$gender')";
-    if($conn)
+        $conn = new mysqli($servername, $username, $password, $dbname);
+    //$sql = "INSERT INTO test(ID, fname, age, gender) VALUES ('$ID', '$fname', '$age', '$gender')";
+    $res= mysqli_query($conn, $sql);
+    // if($res)
+    // {
+    //     echo "Successful insertion into the table: " . $dbname;
+    // }
+    // else
+    // {
+    //     echo "Insertion Failed, Error: " . mysqli_error($conn);
+    // }
+    
+
+<br>
+
+    while($res=mysqli_fetch_assoc($res))
     {
-        echo "Connection Successful to the database " . $dbname;
+        echo "ID: " . $res['ID'] . " - Name: " . $res['fname'] . " - Age: " . $res['age']
     }
-    else
-    {
-        echo "Connection Failed";
-    }
-    ?>
+    
+
+    
+
+?>
 </body>
 </html>
